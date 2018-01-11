@@ -1,3 +1,7 @@
+//
+//  Created by Almaz 6.12.2017
+//
+
 package com.laboratory;
 
 import java.util.Scanner;
@@ -7,11 +11,9 @@ public class Main {
         System.out.println("Введите текст:");
 
         Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.nextLine();
+        String inputLine = scanner.nextLine();
+        StringManipulator stringObject = new StringManipulator(inputLine);
+        System.out.println(stringObject.getIndexList());
 
-        StringManipulator stringObject = new StringManipulator();
-        String cleanInputString = stringObject.clearInputString(inputString);
-        stringObject.printFormattedString(cleanInputString);
-        stringObject.stringProcessing(cleanInputString);
     }
 }

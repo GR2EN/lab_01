@@ -1,10 +1,35 @@
+//
+//  Created by Almaz 6.12.2017
+//
+
 package com.laboratory;
+
+import java.util.ArrayList;
 
 public class StringManipulator {
     private static final String RUSSIAN_ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+    private String string;
 
-    public String clearInputString(String inputString) {
-        String cleanString = "";
+    private void setString(String string) {
+        this.string = string;
+    }
+
+    private void printFormattedString() {
+        // Выводим форматированную строку в формате {символ*два пробела*}
+        for(int i = 0; i < string.length(); i++){
+            System.out.print(string.toCharArray()[i] + "  ");
+        }
+
+        System.out.println("");
+    }
+
+    public StringManipulator(String inputString) {
+        clearInputString(inputString);
+        printFormattedString();
+    }
+
+    private void clearInputString(String inputString) {
+        StringBuilder cleanString = new StringBuilder();
         char symbol;
 
         // Оставляем в строке только буквы русского алфавита
@@ -12,29 +37,23 @@ public class StringManipulator {
             symbol = inputString.charAt(i);
 
             if(symbol >= 'а' && symbol <= 'я' || symbol >= 'А' && symbol <= 'Я') {
-                cleanString += symbol;
+                cleanString.append(symbol);
             }
         }
 
-        return cleanString;
+        setString(cleanString.toString());
     }
 
-    public void printFormattedString(String inputString) {
-        // Выводим форматированную строку в формате {символ*два пробела*}
-        for(int i = 0; i < inputString.length(); i++){
-            System.out.print(inputString.toCharArray()[i] + "  ");
-        }
-
-        System.out.println("");
-    }
-
-    public void stringProcessing(String inputString) {
-        char[] inputStringLower = inputString.toLowerCase().toCharArray();
+    public ArrayList<Integer> getIndexList() {
+        char[] inputStringLower = string.toLowerCase().toCharArray();
+        ArrayList<Integer> indexList = new ArrayList<>();
 
         // Выводим порядковый номер алфавите каждого символа из строки
         // + 1 компенсация отсчета в массивах с нуля
-        for (char x : inputStringLower) {
-            System.out.print(RUSSIAN_ALPHABET.lastIndexOf(x) + 1 + "  ");
+        for (char anInputStringLower : inputStringLower) {
+            indexList.add(RUSSIAN_ALPHABET.lastIndexOf(anInputStringLower) + 1);
         }
+        
+        return indexList;
     }
 }
